@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+        <h1>Liste des films <a href="{{ path('film_create') }}">Ajouter un film</a> </h1>
+        {% if films|length != 0 %}
+            <table border="1">
+                <tr>
+                    <td>
+                        Titre
+                    </td>
+                    <td>
+                        Description
+                    </td>
+                    <td>
+                        Date de sortie
+                    </td>
+                    <td>
+                        Categorie
+                    </td>
+                    <td>
+                        Operation
+                    </td>
+                </tr>
+                {% for film in films %}
+                    <tr>
+                        <td>
+                            {{ film.titre }}
+                        </td>
+                        <td>
+                            {{ film.description }}
+                        </td>
+                        <td>
+                            {{ film.dateDeSortie|date('d-m-Y') }}
+                        </td>
+                        <td>
+                            {{ film.Categorie.nom }}
+                        </td>
+                        <td>
+                            -- <a href="{{ path('film_edit', {'film': film.id}) }}">Modifier</a>
+                            -- <a href="{{ path('film_delete', {'film': film.id}) }}">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <h1 style="color:red">Aucun film pour cette categorie</h1>
+        {% endif %}
+
+{% endblock %}

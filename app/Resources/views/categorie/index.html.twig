@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Liste des categories <a href="{{ path('categorie_create') }}">Ajouter une categorie</a></h1>
+    <table border="1">
+        <tr>
+            <td>
+                Nom Categorie
+            </td>
+            <td>
+                Operation
+            </td>
+        </tr>
+        {% for categorie in categories %}
+            <tr>
+                <td>
+                    {{ categorie.nom }}
+                </td>
+                <td>
+                    <a href="{{ path('film_index', {'categorie': categorie.id}) }}">Lister</a>
+                    -- <a href="{{ path('categorie_edit', {'categorie': categorie.id}) }}">Modifier</a>
+                    -- <a href="{{ path('categorie_delete', {'categorie': categorie.id}) }}">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
